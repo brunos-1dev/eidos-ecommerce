@@ -1,5 +1,5 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getProductById } from "../../data/products";
 import { useCart } from "../../context/CartContext";
 import formatPrice from "../../utils/formatPrice";
@@ -12,6 +12,11 @@ const ProductDetail = () => {
   const { addItem, cart } = useCart();
   const [activeImg, setActiveImg] = useState(0);
   const [added, setAdded] = useState(false);
+
+  useEffect(() => {
+    setActiveImg(0);
+    setAdded(false);
+  }, [id]);
 
   if (!product) {
     return (
