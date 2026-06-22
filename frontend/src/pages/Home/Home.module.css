@@ -132,6 +132,20 @@
   font-size: 0.9rem;
 }
 
+.status {
+  text-align: center;
+  color: var(--white-muted);
+  padding: 60px 0;
+  font-size: 0.9rem;
+}
+
+.error {
+  text-align: center;
+  color: var(--danger);
+  padding: 60px 0;
+  font-size: 0.9rem;
+}
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }

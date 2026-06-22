@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getProductById } from "../../data/products";
+import { getProductoById } from "../../services/productosService";
 import { useCart } from "../../context/CartContext";
 import formatPrice from "../../utils/formatPrice";
 import styles from "./ProductDetail.module.css";
@@ -8,20 +8,38 @@ import styles from "./ProductDetail.module.css";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = getProductById(id);
   const { addItem, cart } = useCart();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeImg, setActiveImg] = useState(0);
   const [added, setAdded] = useState(false);
 
   useEffect(() => {
+    setProduct(null);
     setActiveImg(0);
     setAdded(false);
+    setLoading(true);
+    setError(null);
+
+    getProductoById(id)
+      .then((data) => setProduct(data))
+      .catch(() => setError("No se pudo cargar el producto."))
+      .finally(() => setLoading(false));
   }, [id]);
 
-  if (!product) {
+  if (loading) {
     return (
       <div className={styles.notFound}>
-        <p>Producto no encontrado.</p>
+        <p>Cargando producto…</p>
+      </div>
+    );
+  }
+
+  if (error || !product) {
+    return (
+      <div className={styles.notFound}>
+        <p>{error ?? "Producto no encontrado."}</p>
         <Link to="/" className={styles.backLink}>← Volver a la tienda</Link>
       </div>
     );
