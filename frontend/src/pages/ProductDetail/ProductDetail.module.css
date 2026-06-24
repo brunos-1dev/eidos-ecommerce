@@ -246,6 +246,11 @@
   color: var(--accent);
 }
 
+.addBtn.added:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--black);
+}
+
 .addBtn:disabled {
   opacity: 0.35;
   cursor: not-allowed;
