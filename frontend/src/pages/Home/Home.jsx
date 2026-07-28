@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProductos } from "../../services/productosService";
+import { getProductos, getCategorias } from "../../services/productosService";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./Home.module.css";
 
@@ -11,14 +11,19 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getProductos()
-      .then((data) => {
-        setProducts(data);
-        const unique = [...new Set(data.map((p) => p.category))];
-        setCategories(unique);
-      })
-      .catch(() => setError("No se pudieron cargar los productos."))
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      try {
+        const [productos, categorias] = await Promise.all([getProductos(), getCategorias()]);
+        setProducts(productos);
+        setCategories(categorias);
+      } catch {
+        setError("No se pudieron cargar los productos.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const filtered =
@@ -65,11 +70,11 @@ const Home = () => {
               </button>
               {categories.map((cat) => (
                 <button
-                  key={cat}
-                  className={`${styles.filterBtn} ${activeCategory === cat ? styles.active : ""}`}
-                  onClick={() => setActiveCategory(cat)}
+                  key={cat.id}
+                  className={`${styles.filterBtn} ${activeCategory === cat.name ? styles.active : ""}`}
+                  onClick={() => setActiveCategory(cat.name)}
                 >
-                  {cat}
+                  {cat.name}
                 </button>
               ))}
             </div>

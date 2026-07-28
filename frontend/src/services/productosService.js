@@ -19,3 +19,9 @@ export async function getProductoById(id) {
     throw error;
   }
 }
+
+export async function getCategorias() {
+  const res = await fetch(`${BASE_URL}/categorias`);
+  if (!res.ok) throw new Error(`Error ${res.status}`);
+  return await res.json();
+}
