@@ -31,7 +31,6 @@ const Cart = () => {
       </div>
 
       <div className={styles.layout}>
-        {/* Items */}
         <div className={styles.items}>
           {cart.map((item) => (
             <article key={item.id} className={styles.item}>
@@ -86,7 +85,6 @@ const Cart = () => {
           </button>
         </div>
 
-        {/* Resumen */}
         <aside className={styles.summary}>
           <h2 className={styles.summaryTitle}>Resumen del pedido</h2>
 

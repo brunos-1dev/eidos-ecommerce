@@ -33,7 +33,6 @@ const Home = () => {
 
   return (
     <main>
-      {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <p className={styles.heroSub}>Tienda oficial</p>
@@ -45,7 +44,6 @@ const Home = () => {
         <div className={styles.heroDivider} aria-hidden="true" />
       </section>
 
-      {/* Catálogo */}
       <section className={`${styles.catalog} container`}>
         <div className={styles.catalogHeader}>
           <h2 className={styles.catalogTitle}>Productos</h2>
@@ -60,7 +58,6 @@ const Home = () => {
 
         {!loading && !error && (
           <>
-            {/* Filtros */}
             <div className={styles.filters} role="group" aria-label="Filtrar por categoría">
               <button
                 className={`${styles.filterBtn} ${activeCategory === "Todos" ? styles.active : ""}`}
@@ -79,7 +76,6 @@ const Home = () => {
               ))}
             </div>
 
-            {/* Grid */}
             <div className={styles.grid}>
               {filtered.map((product) => (
                 <ProductCard key={product.id} product={product} />

@@ -55,7 +55,6 @@ const ProductDetail = () => {
 
   return (
     <main className={`${styles.page} container`}>
-      {/* Breadcrumb */}
       <nav className={styles.breadcrumb} aria-label="Breadcrumb">
         <button onClick={() => navigate(-1)} className={styles.back}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -70,7 +69,6 @@ const ProductDetail = () => {
       </nav>
 
       <div className={styles.layout}>
-        {/* Galería */}
         <div className={styles.gallery}>
           <div className={styles.mainImage}>
             <img src={product.images[activeImg]} alt={product.name} />
@@ -114,7 +112,6 @@ const ProductDetail = () => {
           )}
         </div>
 
-        {/* Info */}
         <div className={styles.info}>
           <span className={styles.category}>{product.category}</span>
           <h1 className={styles.name}>{product.name}</h1>
@@ -124,7 +121,6 @@ const ProductDetail = () => {
 
           <p className={styles.description}>{product.description}</p>
 
-          {/* Detalles */}
           <div className={styles.detailsBlock}>
             <h3 className={styles.detailsTitle}>Especificaciones</h3>
             <dl className={styles.detailsList}>
@@ -137,7 +133,6 @@ const ProductDetail = () => {
             </dl>
           </div>
 
-          {/* Envío */}
           <div className={styles.shipping}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <rect x="1" y="3" width="15" height="13" rx="1" />
@@ -148,7 +143,6 @@ const ProductDetail = () => {
             <p>{product.shipping}</p>
           </div>
 
-          {/* Stock */}
           <p className={styles.stock}>
             {product.stock > 10
               ? "✓ Stock disponible"
@@ -157,7 +151,6 @@ const ProductDetail = () => {
               : "✗ Sin stock"}
           </p>
 
-          {/* CTA */}
           <button
             onClick={handleAdd}
             className={`${styles.addBtn} ${added || inCart ? styles.added : ""}`}

@@ -9,13 +9,11 @@ const Navbar = () => {
   return (
     <header className={styles.header}>
       <nav className={`${styles.nav} container`}>
-        {/* Logo */}
         <Link to="/" className={styles.logo}>
           <img src="/images/logo/logo_blanco_transparente.png" alt="EIDOS" className={styles.logoImg} />
           <span className={styles.logoText}>EIDOS</span>
         </Link>
 
-        {/* Links */}
         <ul className={styles.links}>
           <li>
             <Link to="/" className={`${styles.link} ${pathname === "/" ? styles.active : ""}`}>
@@ -24,7 +22,6 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Cart */}
         <Link to="/carrito" className={styles.cartBtn} aria-label="Ver carrito">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
