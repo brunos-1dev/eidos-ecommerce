@@ -9,13 +9,8 @@ export async function getById(id) {
   const row = await findById(id);
   if (!row) return null;
 
-  const images = typeof row.imagenes === 'string'
-    ? JSON.parse(row.imagenes)
-    : row.imagenes;
-
-  const details = typeof row.detalles === 'string'
-    ? JSON.parse(row.detalles)
-    : row.detalles;
+  const images = parseJSON(row.imagenes, []);
+  const details = parseJSON(row.detalles, {});
 
   return {
     ...normalizeProducto(row),
@@ -36,4 +31,14 @@ function normalizeProducto(row) {
     featured: Boolean(row.destacado),
     category: row.categoria,
   };
+}
+
+function parseJSON(value, fallback) {
+  if (value === null || value === undefined) return fallback;
+  if (typeof value !== 'string') return value;
+  try {
+    return JSON.parse(value);
+  } catch {
+    return fallback;
+  }
 }
