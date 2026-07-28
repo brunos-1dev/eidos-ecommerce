@@ -1,23 +1,15 @@
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 export async function getProductos() {
-  try {
-    const res = await fetch(`${BASE_URL}/productos`);
-    if (!res.ok) throw new Error(`Error ${res.status}`);
-    return await res.json();
-  } catch (error) {
-    throw error;
-  }
+  const res = await fetch(`${BASE_URL}/productos`);
+  if (!res.ok) throw new Error(`Error ${res.status}`);
+  return await res.json();
 }
 
 export async function getProductoById(id) {
-  try {
-    const res = await fetch(`${BASE_URL}/productos/${id}`);
-    if (!res.ok) throw new Error(`Error ${res.status}`);
-    return await res.json();
-  } catch (error) {
-    throw error;
-  }
+  const res = await fetch(`${BASE_URL}/productos/${id}`);
+  if (!res.ok) throw new Error(`Error ${res.status}`);
+  return await res.json();
 }
 
 export async function getCategorias() {
