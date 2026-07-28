@@ -9,7 +9,7 @@ const cartReducer = (state, action) => {
       if (existing) {
         return state.map((i) =>
           i.id === action.payload.id
-            ? { ...i, quantity: i.quantity + 1 }
+            ? { ...i, quantity: i.quantity >= i.stock ? i.quantity : i.quantity + 1 }
             : i
         );
       }
@@ -20,7 +20,7 @@ const cartReducer = (state, action) => {
     case "UPDATE_QUANTITY":
       return state.map((i) =>
         i.id === action.payload.id
-          ? { ...i, quantity: Math.max(1, action.payload.quantity) }
+          ? { ...i, quantity: Math.max(1, Math.min(action.payload.quantity, i.stock)) }
           : i
       );
     case "CLEAR_CART":
